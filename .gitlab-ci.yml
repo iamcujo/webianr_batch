@@ -1,8 +1,6 @@
 ---
 stages:
-  - ".pre"
   - develop
-  - ".post"
 
 deploy_dev:
   stage: develop
