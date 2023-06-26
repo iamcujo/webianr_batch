@@ -1,7 +1,7 @@
 ---
 stages:
 - build
-- develop_deploy
+- deploy # 개발버서에 develop 브랜치 deploy
 
 build:
   stage: build
@@ -12,7 +12,7 @@ build:
       - target/*.jar  # 빌드된 JAR 파일을 아티팩트로 등록합니다
 
 deploy:
-  stage: develop_deploy
+  stage: deploy
   script:
   - echo "dvwebinar-batch restart start.."
   - sleep 1s
