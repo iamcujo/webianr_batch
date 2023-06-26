@@ -1,6 +1,14 @@
 ---
 stages:
+- build
 - deploy
+
+maven-build:
+  stage: build
+  script: "mvn $MAVEN_CLI_OPTS clean package -DskipTests"
+  artifacts:
+    paths:
+      - /mc/gitlab-runner/dvwebinarbatch/*.jar
 
 deploy_dev:
   stage: deploy
