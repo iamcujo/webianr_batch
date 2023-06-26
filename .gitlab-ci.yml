@@ -7,21 +7,19 @@ deploy_dev:
   only:
     - develop
   before_script:
-  	- sleep 1s
     - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
 
   script:
     - sleep 10s
     - tar cvf /mc/dvwebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
-	- sleep 3s
-	- rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
-	- sleep 2s
-	- cp  /mc/jenkins/dvwebinarbatch/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
-	- sleep 5s
-	- find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
+    - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - sleep 2s
+    - cp  /mc/jenkins/dvwebinarbatch/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - sleep 5s
+    - find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
 
   after_script:
     - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
     - sleep 10s
   tags:
-    - devbatch
+    - developbatch
