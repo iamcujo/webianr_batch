@@ -1,18 +1,11 @@
 ---
 stages:
-- build
-- deploy # 개발버서에 develop 브랜치 deploy
-
-build:
-  stage: build
-  script:
-    - clean install -Dmaven.test.skip  # Maven을 사용하여 JAR 파일을 빌드합니다
-  artifacts:
-    paths:
-      - target/*.jar  # 빌드된 JAR 파일을 아티팩트로 등록합니다
+- develop # # develop branch
 
 deploy:
-  stage: deploy
+  stage: develop
+  only:
+    - develop
   script:
   - echo "dvwebinar-batch restart start.."
   - sleep 1s
