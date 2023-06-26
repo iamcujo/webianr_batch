@@ -27,7 +27,6 @@ public class UserSleepTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
-//        System.out.println("executed UserSleepTasklet !!");
 
         // 1. usn 타켓팅
         // 2. 타켓팅한 usn 으로 user 데이터 조회
