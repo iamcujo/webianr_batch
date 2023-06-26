@@ -16,7 +16,7 @@ deploy:
   script:
   - echo "dvwebinar-batch restart start.."
   - sleep 1s
-  - "/mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop"
+  - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
   - sleep 10s
   - tar cvf /mc/dvwebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar \
     /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
@@ -27,10 +27,9 @@ deploy:
   - sleep 5s
   - find /mc/dvwebinarbatch/data/dvwebinarbatch -exec touch {} \;
   - sleep 5s
-  - "/mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start"
+  - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
   - sleep 10s
   - echo "dvwebinar-batch restart finish.."
   - exit 0
-#  - /mc/dvwebinarbatch/shellscript/jenkins_run.sh
   tags:
   - developbatch
