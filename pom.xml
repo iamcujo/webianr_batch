@@ -10,7 +10,6 @@
     </parent>
     <groupId>com.ids</groupId>
     <artifactId>webinar_batch</artifactId>
-<!--    <version>0.0.1-SNAPSHOT</version>-->
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>webinar_batch</name>
