@@ -38,7 +38,7 @@ public class UserSleepTasklet implements Tasklet {
                 " AND user.usn = 1000214 " +
                 " AND NOT EXISTS (SELECT 1 FROM user_sleep WHERE user_sleep.usn = user.usn)" +
                 " GROUP BY user.usn HAVING MAX(user_login_log.login_dt) < DATE_SUB(NOW(), INTERVAL 1 YEAR)";
-//        jdbcTemplate.queryForList(insertSql);
+        jdbcTemplate.queryForList(insertSql);
 
         // 4. 타켓팅한 usn 으로 user 테이블의 is_use 는 false(0) 처리
         String updateSql = "UPDATE user SET is_use = 0 WHERE usn IN (" +

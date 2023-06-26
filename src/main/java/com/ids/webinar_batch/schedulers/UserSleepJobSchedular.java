@@ -20,7 +20,7 @@ public class UserSleepJobSchedular {
     }
 
 //    @Scheduled(fixedDelay = 3600000)  // 1시간마다 실행
-    @Scheduled(fixedDelay = 5000)  // 5초마다 실행
+    @Scheduled(fixedDelay = 10000)  // 10초마다 실행
     public void runUserSleepJob() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("currentTime", System.currentTimeMillis())
