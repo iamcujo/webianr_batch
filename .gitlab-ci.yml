@@ -13,7 +13,7 @@ deploy_dev:
   - sleep 3s
   - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
   - sleep 2s
-  - cp /mc/jenkins/dvwebinarbatch/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+  - cp /mc/jenkins/dvwebinarbatch/target/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
   - sleep 5s
   - find /mc/dvwebinarbatch/data/dvwebinarbatch -exec touch {} \;
   - sleep 5s
