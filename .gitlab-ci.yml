@@ -1,6 +1,6 @@
 ---
 stages:
-- develop # # develop branch
+- develop # develop branch
 
 deploy:
   stage: develop
