@@ -14,9 +14,11 @@
     <packaging>jar</packaging>
     <name>webinar_batch</name>
     <description>webinar_batch</description>
+
     <properties>
         <java.version>8</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
