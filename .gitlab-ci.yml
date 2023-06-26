@@ -26,4 +26,4 @@ deploy:
 #  - echo "dvwebinar-batch restart finish..."
 #  - exit 0
   tags:
-  - developbatch
+  - batch_dev
