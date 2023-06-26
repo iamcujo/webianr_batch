@@ -5,17 +5,22 @@ stages:
 deploy_dev:
   stage: develop
   script:
-    - echo "webainr batch develop deploy start..."
+    - echo "dvwebinar-batch restart start..."
+    - sleep 1s
     - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
     - sleep 10s
     - tar cvf /mc/dvwebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - sleep 3s
     - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
     - sleep 2s
     - cp  /mc/jenkins/dvwebinarbatch/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
     - sleep 5s
     - find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
+    - sleep 5s
     - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
-    - echo "webainr batch develop deploy end..."
     - sleep 10s
+    - echo "dvwebinar-batch restart finish..."
+    - exit 0
+    
   tags:
     - developbatch
