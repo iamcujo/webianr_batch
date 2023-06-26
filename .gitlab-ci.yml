@@ -1,6 +1,16 @@
 ---
 stages:
+- build
 - develop
+
+bulid_dev:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - /mc/jenkins/dvwebinarbatch/target/dvwebinar-batch.jar
+
 deploy_dev:
   stage: develop
   script:
