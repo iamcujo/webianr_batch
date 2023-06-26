@@ -1,29 +1,13 @@
 ---
 stages:
-#  - build
-  - deploy
+- deploy
 
-#variables:
-#  MAVEN_VERSION: "3.8.4"
-
-#build:
-#  stage: build
-#  image: maven:${MAVEN_VERSION}
-#  script:
-#    - echo "Building the project..."
-#    - mvn clean install -Dmaven.test.skip
-
-deploy:
+deploy_dev:
   stage: deploy
   only:
     - develop
-#  script:
-#    - echo "Transferring JAR file to remote server..."
-#    - scp target/*.jar user@10.101.90.118:/mc/gitlab-runner/dvwebinarbatch
-#    - echo "Executing remote command..."
-#    - ssh user@10.101.90.118 "/mc/dvwebinarbatch/shellscript/jenkins_run.sh"
   script:
-  - echo "dvwebinar-batch restart start..."
+  - echo "dvwebinar-batch restart start.."
 #  - sleep 1s
 #  - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
 #  - sleep 10s
@@ -38,7 +22,7 @@ deploy:
 #  - sleep 5s
 #  - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
 #  - sleep 10s
-  - echo "dvwebinar-batch restart finish..."
+  - echo "dvwebinar-batch restart finish.."
 #  - exit 0
   tags:
   - batch_dev
