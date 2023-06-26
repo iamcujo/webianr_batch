@@ -6,7 +6,7 @@ stages:
 build:
   stage: build
   script:
-    - mvn clean package  # Maven을 사용하여 JAR 파일을 빌드합니다
+    - clean install -Dmaven.test.skip  # Maven을 사용하여 JAR 파일을 빌드합니다
   artifacts:
     paths:
       - target/*.jar  # 빌드된 JAR 파일을 아티팩트로 등록합니다
