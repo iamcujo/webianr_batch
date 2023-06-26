@@ -21,5 +21,6 @@ deploy_dev:
   after_script:
     - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
     - sleep 10s
+    
   tags:
     - developbatch
