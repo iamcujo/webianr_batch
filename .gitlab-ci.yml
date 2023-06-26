@@ -1,9 +1,9 @@
 ---
 stages:
-- develop # develop branch
+- deploy
 
-deploy:
-  stage: develop
+deploy_dev:
+  stage: deploy
   only:
     - develop
   script:
