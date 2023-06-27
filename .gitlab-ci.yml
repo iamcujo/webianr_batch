@@ -9,7 +9,5 @@ deploy:
     - echo "batch commit and push ..."
     - echo "batch commit and push ..."
     - echo "batch commit and push ..."
-    - echo "batch commit and push ..."
-    - echo "batch commit and push ..."
   tags:
     - batch-dev
