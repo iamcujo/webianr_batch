@@ -11,7 +11,7 @@ build:
   after_script:
     - echo 'build success!'
   tags:
-    - batch-dev
+    - batch_dev
 
 deploy:
   stage: deploy
@@ -22,4 +22,4 @@ deploy:
     - echo "batch commit and push ..."
     - echo "batch commit and push ..."
   tags:
-    - batch-dev
+    - batch_dev
