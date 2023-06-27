@@ -19,3 +19,5 @@ deploy:
     - scp target/*.jar docsns@10.101.90.118:/mc/jenkins/dvwebinarbatch
     - echo "Executing remote command..."
     - ssh docsns@10.101.90.118 "/mc/dvwebinarbatch/shellscript/jenkins_run.sh"
+  tags:
+    - batch_dev
