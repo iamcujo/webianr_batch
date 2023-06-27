@@ -19,8 +19,8 @@ public class UserSleepJobSchedular {
         this.batchConfiguration = batchConfiguration;
     }
 
-//    @Scheduled(fixedDelay = 3600000)  // 1시간마다 실행
-    @Scheduled(fixedDelay = 10000)  // 10초마다 실행
+    @Scheduled(cron = "0 0 9 * * *")  // 매일 오전 9시
+//    @Scheduled(fixedDelay = 10000)  // 10초마다 실행
     public void runUserSleepJob() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("currentTime", System.currentTimeMillis())
