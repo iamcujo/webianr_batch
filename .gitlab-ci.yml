@@ -8,6 +8,6 @@ build:
     - mvn clean package
   artifacts:
     paths:
-      - /mc/dvwebinarbatch/data/dvwebinarbatch/*.jar
+      - target/*.jar
   tags:
     - batch_dev
