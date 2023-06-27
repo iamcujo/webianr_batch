@@ -1,12 +1,10 @@
 ---
 stages:
-- deploy
+- deploy_dev
 
 deploy_dev:
-  stage: deploy
-  only:
-    - develop
+  stage: deploy_dev
   script:
-  - echo "dvwebinar-batch git commit and push..."
+  - echo "dvwebinar-batch develop branch git commit and push..."
   tags:
   - batch_dev
