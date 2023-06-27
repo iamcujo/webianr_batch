@@ -1,0 +1,208 @@
+spring:
+  profiles:
+    active:
+      - local
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  session:
+    store-type: redis
+
+server.servlet.session.timeout: 3600
+
+alias.path: /mc/dvwebinar/dvwebinar_contents/upload
+path.delimiter: /
+upload:
+  file:
+    path: /mc/dvwebinar/dvwebinar_contents/upload/file
+    limit-size: 157_286_400
+  data:
+    path: /mc/dvwebinar/dvwebinar_contents/upload/data
+
+resource.location.file: file:/mc/dvwebinar/dvwebinar_contents/upload/file/
+resource.location.data: file:/mc/dvwebinar/dvwebinar_contents/upload/data/
+
+scp.shellscript: /mc/docsns/script/data_copy.sh
+
+module:
+  apikey: 4dc764f936f743c1ae3bfd07bc0a21
+
+alimtalk:
+  profilekey: edd1c8dada353eecdc0b7689095c9642ff6a3ad5
+  tranid: 100
+  callback: 1522-0209
+
+webinar.context: https://www.dvwebinar.co.kr
+
+---
+
+##### real 설정 #####
+spring.profiles: real
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:mariadb:replication://175.106.97.180:3306,175.106.99.106:3306/dvwebinar?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Seoul&noAccessToProcedureBodies=true
+    username: dvwebinar
+    password: "docdnpqlsk123!@#"
+    sql-script-encoding: UTF-8
+    tomcat:
+      initial-size: 4
+      max-active: 10
+      max-idle: 8
+      min-idle: 4
+  jpa:
+    database: mysql
+    hibernate.ddl-auto: none    ##### 절대 수정 금지 #####
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+
+server:
+  port: 9107
+  ajp:
+    enable: true
+    port: 9108
+
+logging:
+  file: /log/dvwebinar/logs/batch/logback
+  level:
+    org.springframework:
+      core: info
+      beans: info
+      context: info
+      web: info
+
+    com.mcircle.webinar: info
+
+    org.hibernate.type.descriptor.sql: info
+
+---
+
+##### dev 설정 #####
+spring.profiles: dev
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://118.67.143.191:3306/dvwebinar?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Seoul&noAccessToProcedureBodies=true
+    username: dvwebinar
+    password: "docdnpqlsk123!@#"
+    sql-script-encoding: UTF-8
+    dbcp2:
+      initial-size: 4
+      max-idle: 8
+      min-idle: 4
+    tomcat:
+      initial-size: 4
+      max-active: 10
+      max-idle: 8
+      min-idle: 4
+  jpa:
+    database: mysql
+    hibernate.ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+
+server:
+  port: 9107
+  ajp:
+    enable: true
+    port: 9108
+
+logging:
+  file: /log/dvwebinar/logs/batch/logback
+  level:
+    org.springframework:
+      core: info
+      beans: info
+      context: info
+      web: info
+
+    com.mcircle.webinar: info
+
+    org.hibernate.type.descriptor.sql: info
+
+
+webinar.context: http://dev.dvwebinar.co.kr:9105
+
+---
+
+##### local 설정 #####
+spring.profiles: local
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 600000
+      connection-init-sql: "select 1"
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://118.67.143.191:3306/dvwebinar?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Seoul
+    username: ddl_dvwebinar
+    password: "ddldocdnpqlsk123!@#"
+    sql-script-encoding: UTF-8
+    dbcp2:
+      initial-size: 1
+      max-idle: 1
+      min-idle: 1
+    tomcat:
+      initial-size: 1
+      max-active: 1
+      max-idle: 1
+      min-idle: 1
+  jpa:
+    database: mysql
+    hibernate.ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+    thymeleaf:
+      cache: false
+
+server:
+  port: 28081
+
+alias.path: c:/portal/mc/dvwebinar/dvwebinar_contents/upload
+path.delimiter: /
+upload:
+  file:
+    #    path: c:/portal/mc/dvwebinar/dvwebinar_contents/upload/file
+    path: /Users/honyeonchu/Desktop
+    limit-size: 157_286_400
+  data:
+    path: c:/portal/mc/dvwebinar/dvwebinar_contents/upload/data
+
+resource.location.file: file:c:/portal/mc/dvwebinar/dvwebinar_contents/upload/file/
+resource.location.data: file:c:/portal/mc/dvwebinar/dvwebinar_contents/upload/data/
+
+webinar.context: http://localhost:28080
+
+logging:
+  file: /Users/honyeonchu/IdeaProjects/log/dvwebinar/logs/batch/logback
+
+  level:
+    org.springframework:
+      core: debug
+      beans: debug
+      context: debug
+      web: debug
+    #      security: info
+
+    com.mcircle.webinar: debug
+
+    org.hibernate.type.descriptor.sql: debug
