@@ -1,13 +1,24 @@
 stages:
-  - build
+  - deploy
 
-build:
-  stage: build
-  image: maven:3.8.4
+deploy:
+  stage: deploy
   script:
-    - mvn clean package
-  artifacts:
-    paths:
-      - target/*.jar
+    - echo "dvwebinar-batch restart start..."
+    #    - sleep 1s
+    #    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
+    #    - sleep 10s
+    #    - tar cvf /mc/dvwebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    #    - sleep 3s
+    #    - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    #    - sleep 2s
+    #    - cp  /mc/jenkins/dvwebinarbatch/target/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    #    - sleep 5s
+    #    - find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
+    #    - sleep 5s
+    #    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
+    #    - sleep 10s
+    - echo "dvwebinar-batch restart finish..."
+  #    - exit 0
   tags:
     - batch_dev
