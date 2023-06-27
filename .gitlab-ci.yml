@@ -1,10 +1,21 @@
----
 stages:
-- deploy_dev
+  - build
+  - deploy
 
-deploy_dev:
-  stage: deploy_dev
+variables:
+  MAVEN_VERSION: "3.8.4"
+
+build:
+  stage: build
+  image: maven:${MAVEN_VERSION}
   script:
-  - echo "dvwebinar-batch develop branch git commit and push..."
-  tags:
-  - batch_dev
+    - echo "Building the project..."
+    - mvn clean install -Dmaven.test.skip
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Transferring JAR file to remote server..."
+    - scp target/*.jar docsns@10.101.90.118:/mc/jenkins/dvwebinarbatch
+    - echo "Executing remote command..."
+    - ssh docsns@10.101.90.118 "/mc/dvwebinarbatch/shellscript/jenkins_run.sh"
