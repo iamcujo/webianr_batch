@@ -19,15 +19,29 @@ public class UserSleepJobSchedular {
         this.batchConfiguration = batchConfiguration;
     }
 
-    @Scheduled(cron = "0 0 9 * * *")  // 매일 오전 9시
-//    @Scheduled(fixedDelay = 10000)  // 10초마다 실행
+    // 휴면처리 데이터이관 Job 스케쥴러
+//    @Scheduled(cron = "0 0 9 * * *")  // 매일 오전 9시
+    @Scheduled(fixedDelay = 300 * 1000)  // 이전 작업 종료 후 300초 후 실행
     public void runUserSleepJob() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("currentTime", System.currentTimeMillis())
                 .toJobParameters();
 
         JobExecution jobExecution = jobLauncher.run(batchConfiguration.userSleepJob(), jobParameters);
-
 //        System.out.println("userSleepJob status: " + jobExecution.getStatus());
+
+    }
+
+    // 휴면처리 노티 Job 스케쥴러
+    //    @Scheduled(cron = "0 0 9 * * *")  // 매일 오전 9시
+    @Scheduled(fixedDelay = 300 * 1000)  // 이전 작업 종료 후 300초 후 실행
+    public void runUserSleepNotiJob() throws Exception {
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addLong("currentTime", System.currentTimeMillis())
+                .toJobParameters();
+
+        JobExecution jobExecution = jobLauncher.run(batchConfiguration.userSleepNotiJob(), jobParameters);
+//        System.out.println("userSleepJob status: " + jobExecution.getStatus());
+
     }
 }
