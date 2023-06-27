@@ -1,17 +1,17 @@
 stages:
-  - build
+#  - build
   - deploy
 
-build:
-  stage: build
-  only:
-    - develop
-  script:
-    - mvn clean install
-  after_script:
-    - echo 'build success!'
-  tags:
-    - batch_dev
+#build:
+#  stage: build
+#  only:
+#    - develop
+#  script:
+#    - mvn clean install
+#  after_script:
+#    - echo 'build success!'
+#  tags:
+#    - batch_dev
 
 deploy:
   stage: deploy
