@@ -41,7 +41,7 @@ public class UserSleepNotiTasklet implements Tasklet {
                 " FROM user JOIN user_login_log ON user.usn = user_login_log.usn" +
                 " WHERE 1=1" +
                 " AND NOT EXISTS (SELECT 1 FROM user_sleep WHERE user_sleep.usn = user.usn)" +
-                " GROUP BY user.usn HAVING MAX(user_login_log.login_dt) < (NOW() - INTERVAL 1 YEAR - INTERVAL 30 DAY) limit 10";
+                " GROUP BY user.usn HAVING MAX(user_login_log.login_dt) < (NOW() - INTERVAL 1 YEAR - INTERVAL 30 DAY)";
 //        jdbcTemplate.queryForList(notiTargetSql);
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(notiTargetSql);
