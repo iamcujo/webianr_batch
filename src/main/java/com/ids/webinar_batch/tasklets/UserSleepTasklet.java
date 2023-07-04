@@ -29,20 +29,20 @@ public class UserSleepTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
 
         // 1년간 로그인 이력 없는 고객 데이터 이관처리
-        String insertSql = "INSERT INTO user_sleep (usn, user_id, password, user_name, mobile, role_cd, work_cd, work_etc, work_name, major_cd, license, is_sms, is_email, join_cd, is_use, reg_dt, upt_dt)" +
+        String userSleepInsertSql = "INSERT INTO user_sleep (usn, user_id, password, user_name, mobile, role_cd, work_cd, work_etc, work_name, major_cd, license, is_sms, is_email, join_cd, is_use, reg_dt, upt_dt)" +
                 " SELECT user.usn, user.user_id, user.password, user.user_name, user.mobile, user.role_cd, user.work_cd, user.work_etc, user.work_name, user.major_cd, user.license, user.is_sms, user.is_email, user.join_cd, 0 AS is_use, user.reg_dt, NOW() AS upt_dt" +
                 " FROM user JOIN user_login_log ON user.usn = user_login_log.usn" +
                 " WHERE 1=1" +
                 " AND NOT EXISTS (SELECT 1 FROM user_sleep WHERE user_sleep.usn = user.usn)" +
                 " GROUP BY user.usn HAVING MAX(user_login_log.login_dt) < DATE_SUB(NOW(), INTERVAL 1 YEAR)";
-//        jdbcTemplate.queryForList(insertSql);
+//        jdbcTemplate.queryForList(userSleepInsertSql);
 
         // 1년간 로그인 이력 없는 고객 데이터 이관 후 기존 USER 테이블에서 IS_USE = 0 (false) 처리
-        String updateSql = "UPDATE user SET is_use = 0 WHERE usn IN (" +
+        String userFlagUpdateSql = "UPDATE user SET is_use = 0 WHERE usn IN (" +
                 " SELECT user.usn FROM user JOIN user_login_log ON user.usn = user_login_log.usn WHERE 1=1" +
                 " AND EXISTS ( SELECT 1 FROM user_sleep WHERE user_sleep.usn = user.usn )" +
                 " GROUP BY user.usn HAVING MAX(user_login_log.login_dt) < DATE_SUB(NOW(), INTERVAL 1 YEAR) )";
-//        jdbcTemplate.update(updateSql);
+//        jdbcTemplate.update(userFlagUpdateSql);
 
         return RepeatStatus.FINISHED;
     }
