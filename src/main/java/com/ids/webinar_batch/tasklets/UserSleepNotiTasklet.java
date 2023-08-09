@@ -51,7 +51,7 @@ public class UserSleepNotiTasklet implements Tasklet {
 
             WebinarEmailSender emailSender = new WebinarEmailSender();
             System.out.println("userId : " + userId);
-//            emailSender.sendPasswordTemp(MODULE_API_KEY, userId ,"111");
+//            emailSender.sendUserSleep(MODULE_API_KEY, userId);
         }
 
 //        String[] userId = userIdList.toArray(new String[0]);
