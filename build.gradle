@@ -35,7 +35,7 @@ dependencies {
 }
 
 group = 'com.ids'
-version = '1.0'
+version = '1.0.0'
 description = 'webinar_batch'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -47,10 +47,10 @@ publishing {
     }
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Javadoc) {
+tasks.withType(Javadoc).configureEach {
     options.encoding = 'UTF-8'
 }
