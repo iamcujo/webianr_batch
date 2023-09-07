@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active:
+      - dev
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  session:
+    store-type: redis
+
+server.servlet.session.timeout: 3600
+
+alias.path: /mc/dvwebinar/dvwebinar_contents/upload
+path.delimiter: /
+upload:
+  file:
+    path: /mc/dvwebinar/dvwebinar_contents/upload/file
+    limit-size: 157_286_400
+  data:
+    path: /mc/dvwebinar/dvwebinar_contents/upload/data
+
+resource.location.file: file:/mc/dvwebinar/dvwebinar_contents/upload/file/
+resource.location.data: file:/mc/dvwebinar/dvwebinar_contents/upload/data/
+
+scp.shellscript: /mc/docsns/script/data_copy.sh
+
+module:
+  apikey: 4dc764f936f743c1ae3bfd07bc0a21
+
+alimtalk:
+  profilekey: edd1c8dada353eecdc0b7689095c9642ff6a3ad5
+  tranid: 100
+  callback: 1522-0209
+
+webinar.context: https://www.dvwebinar.co.kr

@@ -1,0 +1,41 @@
+stages:
+  - develop # develop branch
+
+### develop ###
+deploy_dev:
+  stage: develop
+  only:
+    - develop
+  before_script:
+    - export PATH=$PATH:/opt/gradle/gradle-7.6.1/bin
+#    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
+#    - sleep 5s
+  script:
+    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh stop
+    - sleep 5s
+    - pwd
+    - gradle build --exclude-task test  --stacktrace
+    - tar cvf /mc/dvwebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - cp ./build/libs/webinar_batch-1.0.0.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+    - find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
+    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
+    - sleep 5s
+    - exit 0
+
+#    - gradle :bootJar
+#    - tar cvf /mc/dvwㅇebinarbatch/dvwebinarbatch-back/dvwebinarbatch$(date +%Y%m%d%H%M%S).tar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+#    - sleep 3s
+#    - rm -rf /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+#    - sleep 2s
+#    - cp  /mc/jenkins/dvwebinarbatch/target/dvwebinar-batch.jar /mc/dvwebinarbatch/data/dvwebinarbatch/dvwebinar-batch.jar
+#    - sleep 5s
+#    - find  /mc/dvwebinarbatch/data/dvwebinarbatch -exec  touch  {}  \;
+#    - sleep 5s
+
+#  after_script:
+#    - /mc/dvwebinarbatch/shellscript/dvwebinarbatch-startup.sh start
+#    - sleep 5s
+#    - exit 0
+  tags:
+    - batch_dev
