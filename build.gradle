@@ -30,6 +30,7 @@ dependencies {
     api 'org.springframework.batch:spring-batch-core:4.1.2.RELEASE'
     api 'org.mariadb.jdbc:mariadb-java-client:2.3.0'
     implementation 'com.mcircle.email:email-module:1.0.9'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.5'
     runtimeOnly 'mysql:mysql-connector-java:8.0.16'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.5.RELEASE'
 }
@@ -47,10 +48,10 @@ publishing {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Javadoc).configureEach {
+tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
 }

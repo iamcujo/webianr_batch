@@ -1,6 +1,18 @@
-.svn/
-.idea/
-.settings/
+# General
 target/
+
+# IDE
+.idea/
+
+.svn/
+.settings/
 *.iml
 builld/
+
+# Application properties
+src/main/resources/application.yml
+
+# Environment-specific application properties
+src/main/resources/application-dev.yml
+src/main/resources/application-local.yml
+src/main/resources/application-real.yml
